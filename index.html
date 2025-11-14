@@ -6,8 +6,8 @@
     <title>PV Daten für Elektriker Partner - Hoffmann Metallbau</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="logo.svg">
-    <link rel="apple-touch-icon" href="logo.png">
-    <meta name="theme-color" content="#ff9500">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#0066cc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -44,10 +44,9 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
             color: white;
-            padding: 40px 30px;
-            text-align: center;
+            padding: 30px;
             position: relative;
         }
 
@@ -58,12 +57,36 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #ff9500 0%, #ff6600 100%);
+            background: linear-gradient(90deg, #0066cc 0%, #0052a3 100%);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header-logo {
+            width: 90px;
+            height: 90px;
+            background: #f8f8f8;
+            padding: 8px;
+            border-radius: 8px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            object-fit: contain;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .header-text {
+            flex: 1;
         }
 
         .header h1 {
             font-size: 28px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 400;
             letter-spacing: 1px;
         }
@@ -72,6 +95,24 @@
             font-size: 15px;
             opacity: 0.9;
             font-weight: 300;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .header-logo {
+                width: 60px;
+                height: 60px;
+            }
         }
 
         .form-section, .summary-section {
@@ -112,8 +153,8 @@
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #ff9500;
-            box-shadow: 0 0 0 2px rgba(255, 149, 0, 0.1);
+            border-color: #0066cc;
+            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
         }
 
         select {
@@ -125,7 +166,7 @@
             background: #fafafa;
             padding: 25px;
             margin-bottom: 25px;
-            border-left: 4px solid #ff9500;
+            border-left: 4px solid #0066cc;
         }
 
         .calculator-section h3 {
@@ -152,8 +193,8 @@
             background: white;
             padding: 25px;
             margin-top: 15px;
-            border: 2px solid #ff9500;
-            box-shadow: 0 2px 10px rgba(255, 149, 0, 0.1);
+            border: 2px solid #0066cc;
+            box-shadow: 0 2px 10px rgba(0, 102, 204, 0.1);
         }
 
         .result-box h4 {
@@ -168,7 +209,7 @@
         .result-value {
             font-size: 42px;
             font-weight: 300;
-            color: #ff9500;
+            color: #0066cc;
         }
 
         .result-unit {
@@ -179,14 +220,14 @@
         }
 
         .zerez-id {
-            background: #fff8e6;
+            background: #e6f2ff;
             padding: 12px 18px;
             margin-top: 10px;
             font-family: 'Courier New', monospace;
             font-size: 14px;
             color: #2d2d2d;
             display: none;
-            border-left: 3px solid #ff9500;
+            border-left: 3px solid #0066cc;
         }
 
         .zerez-id.show {
@@ -212,14 +253,14 @@
         }
 
         .btn-primary {
-            background: #ff9500;
+            background: #0066cc;
             color: white;
         }
 
         .btn-primary:hover {
-            background: #ff6600;
+            background: #0052a3;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 149, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
         }
 
         .btn-secondary {
@@ -252,8 +293,8 @@
         }
 
         .info-box {
-            background: #fff8e6;
-            border-left: 4px solid #ff9500;
+            background: #e6f2ff;
+            border-left: 4px solid #0066cc;
             padding: 15px 18px;
             margin-bottom: 20px;
         }
@@ -273,7 +314,7 @@
         .summary-card {
             background: #fafafa;
             padding: 20px;
-            border-left: 4px solid #ff9500;
+            border-left: 4px solid #0066cc;
         }
 
         .summary-card h3 {
@@ -308,7 +349,7 @@
 
         .highlight-box {
             background: white;
-            border: 2px solid #ff9500;
+            border: 2px solid #0066cc;
             padding: 25px;
             text-align: center;
             margin: 20px 0;
@@ -317,7 +358,7 @@
         .highlight-box .big-number {
             font-size: 48px;
             font-weight: 300;
-            color: #ff9500;
+            color: #0066cc;
         }
 
         .highlight-box .label {
@@ -327,13 +368,74 @@
             letter-spacing: 1px;
             margin-top: 10px;
         }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 2px dashed #0066cc;
+            background: #f0f8ff;
+            cursor: pointer;
+        }
+
+        input[type="file"]:hover {
+            background: #e6f2ff;
+        }
+
+        .foto-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .foto-item {
+            position: relative;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .foto-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .foto-item .remove-foto {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .foto-item .remove-foto:hover {
+            background: #cc0000;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>PV Daten für Elektriker Partner</h1>
-            <p>Hoffmann Metallbau GmbH & CO. KG • Meerbusch</p>
+            <div class="header-content">
+                <img src="logo-header.png?v=4" alt="Hoffmann Metallbau Logo" class="header-logo">
+                <div class="header-text">
+                    <h1>PV Daten für Elektriker Partner</h1>
+                    <p>Hoffmann Metallbau GmbH & CO. KG • Meerbusch</p>
+                </div>
+            </div>
         </div>
 
         <!-- FORMULAR SEITE -->
@@ -488,6 +590,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="fotos">Fotos hochladen</label>
+                    <input type="file" id="fotos" accept="image/*" multiple capture="environment">
+                    <div id="fotoPreview" class="foto-preview"></div>
+                </div>
+
+                <div class="form-group">
                     <label for="datum">Datum *</label>
                     <input type="date" id="datum" required>
                 </div>
@@ -515,6 +623,62 @@
 
     <script>
         let formData = {};
+        let uploadedPhotos = [];
+
+        // Foto Upload Handler
+        document.getElementById('fotos').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        const photoData = {
+                            data: event.target.result,
+                            name: file.name
+                        };
+                        
+                        uploadedPhotos.push(photoData);
+                        displayPhotoPreview();
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Reset input to allow same file again
+            e.target.value = '';
+        });
+
+        function displayPhotoPreview() {
+            const preview = document.getElementById('fotoPreview');
+            preview.innerHTML = '';
+            
+            uploadedPhotos.forEach((photo, index) => {
+                const div = document.createElement('div');
+                div.className = 'foto-item';
+                
+                const img = document.createElement('img');
+                img.src = photo.data;
+                img.alt = photo.name;
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-foto';
+                removeBtn.innerHTML = '×';
+                removeBtn.type = 'button';
+                removeBtn.onclick = () => removePhoto(index);
+                
+                div.appendChild(img);
+                div.appendChild(removeBtn);
+                preview.appendChild(div);
+            });
+        }
+
+        function removePhoto(index) {
+            uploadedPhotos.splice(index, 1);
+            displayPhotoPreview();
+        }
 
         // kWp Rechner
         function calculateKWp() {
@@ -589,7 +753,8 @@
                     wallbox: document.getElementById('wallbox').value
                 },
                 bemerkungen: document.getElementById('bemerkungen').value,
-                datum: document.getElementById('datum').value
+                datum: document.getElementById('datum').value,
+                fotos: uploadedPhotos
             };
 
             showSummary();
@@ -668,6 +833,20 @@
                 html += '</div>';
             }
             
+            // Fotos
+            if (formData.fotos && formData.fotos.length > 0) {
+                html += '<div class="summary-card">';
+                html += '<h3>Fotos (' + formData.fotos.length + ')</h3>';
+                html += '<div class="foto-preview">';
+                formData.fotos.forEach(function(photo) {
+                    html += '<div class="foto-item">';
+                    html += '<img src="' + photo.data + '" alt="' + photo.name + '">';
+                    html += '</div>';
+                });
+                html += '</div>';
+                html += '</div>';
+            }
+            
             // Datum
             html += '<div class="summary-item" style="margin-top: 20px; padding: 15px; background: #fafafa;">';
             html += '<span class="summary-label">Datum:</span><span class="summary-value">' + formData.datum + '</span>';
@@ -691,7 +870,7 @@
                 const pdf = new jsPDF();
                 
                 // PDF Header
-                pdf.setFillColor(26, 26, 26);
+                pdf.setFillColor(0, 102, 204);
                 pdf.rect(0, 0, 210, 40, 'F');
                 
                 pdf.setTextColor(255, 255, 255);
@@ -701,8 +880,8 @@
                 pdf.setFontSize(11);
                 pdf.text('Hoffmann Metallbau GmbH & CO. KG • Meerbusch', 105, 28, { align: 'center' });
                 
-                // Orange Line
-                pdf.setDrawColor(255, 149, 0);
+                // Blue Line
+                pdf.setDrawColor(0, 102, 204);
                 pdf.setLineWidth(2);
                 pdf.line(0, 40, 210, 40);
                 
@@ -770,7 +949,7 @@
                 yPos += 10;
                 
                 // kWp Highlight Box
-                pdf.setFillColor(255, 149, 0);
+                pdf.setFillColor(0, 102, 204);
                 pdf.rect(20, yPos, 170, 25, 'F');
                 
                 pdf.setTextColor(255, 255, 255);
@@ -830,12 +1009,54 @@
                 pdf.setFontSize(11);
                 pdf.text('Datum: ' + formData.datum, 25, yPos);
                 
-                // Footer
-                pdf.setDrawColor(255, 149, 0);
-                pdf.line(20, 280, 190, 280);
+                // Fotos
+                if (formData.fotos && formData.fotos.length > 0) {
+                    yPos += 15;
+                    
+                    // Check if we need a new page
+                    if (yPos > 200) {
+                        pdf.addPage();
+                        yPos = 20;
+                    }
+                    
+                    pdf.setFontSize(16);
+                    pdf.text('Fotos (' + formData.fotos.length + ')', 20, yPos);
+                    yPos += 10;
+                    
+                    // Add photos to PDF (max 2 per page)
+                    for (let i = 0; i < formData.fotos.length; i++) {
+                        if (yPos > 200 || (i > 0 && i % 2 === 0)) {
+                            pdf.addPage();
+                            yPos = 20;
+                        }
+                        
+                        try {
+                            const imgData = formData.fotos[i].data;
+                            const imgWidth = 170;
+                            const imgHeight = 120;
+                            
+                            pdf.addImage(imgData, 'JPEG', 20, yPos, imgWidth, imgHeight);
+                            
+                            pdf.setFontSize(9);
+                            pdf.setTextColor(100, 100, 100);
+                            pdf.text('Foto ' + (i + 1) + ': ' + formData.fotos[i].name, 20, yPos + imgHeight + 7);
+                            
+                            yPos += imgHeight + 15;
+                        } catch (error) {
+                            console.error('Error adding photo ' + (i + 1) + ' to PDF:', error);
+                        }
+                    }
+                    
+                    pdf.setTextColor(0, 0, 0);
+                }
+                
+                // Footer - Position on last page
+                const lastPageHeight = pdf.internal.pageSize.height;
+                pdf.setDrawColor(0, 102, 204);
+                pdf.line(20, lastPageHeight - 15, 190, lastPageHeight - 15);
                 pdf.setFontSize(9);
                 pdf.setTextColor(100, 100, 100);
-                pdf.text('Hoffmann Metallbau GmbH & CO. KG • info@hofmet.de', 105, 285, { align: 'center' });
+                pdf.text('Hoffmann Metallbau GmbH & CO. KG • info@hofmet.de', 105, lastPageHeight - 10, { align: 'center' });
                 
                 // Dateiname
                 const filename = 'PV-Daten-Elektriker_' + formData.kunde.name.replace(/\s+/g, '_') + '_' + formData.datum + '.pdf';
@@ -864,8 +1085,9 @@
                     (formData.anlage.stromverbrauch ? '\nJahresverbrauch: ' + formData.anlage.stromverbrauch + ' kWh' : '') +
                     '\nWallbox: ' + formData.anlage.wallbox +
                     (formData.bemerkungen ? '\n\nBemerkungen:\n' + formData.bemerkungen : '') +
+                    (formData.fotos && formData.fotos.length > 0 ? '\n\nFotos: ' + formData.fotos.length + ' Foto(s) im PDF enthalten' : '') +
                     '\n\nDatum: ' + formData.datum +
-                    '\n\nDie vollständige Zusammenfassung finden Sie im angehängten PDF.';
+                    '\n\nDie vollständige Zusammenfassung und alle Fotos finden Sie im angehängten PDF.';
 
                 // PDF speichern
                 pdf.save(filename);

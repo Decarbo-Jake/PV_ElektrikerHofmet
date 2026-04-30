@@ -1,0 +1,7 @@
+# Exclude local/helper files from Vercel deployment
+.git/
+.gitignore
+FULL_CODE_DUMP.txt
+README.md
+DEPLOYMENT.md
+logo-test.html

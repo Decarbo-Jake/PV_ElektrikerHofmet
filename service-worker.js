@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pv-elektriker-v1';
+const CACHE_NAME = 'pv-elektriker-v2';
 const urlsToCache = [
   '/',
   '/index.html',

@@ -1,6 +1,8 @@
 {
   "name": "PV Daten für Elektriker Partner",
   "short_name": "PV Elektriker",
+  "version": "1.1.0",
+  "build": "2026-04-30",
   "description": "PV-Datenerfassung für Elektriker Partner - Hoffmann Metallbau",
   "start_url": "/",
   "display": "standalone",

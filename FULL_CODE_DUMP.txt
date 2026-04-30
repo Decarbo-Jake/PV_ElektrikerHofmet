@@ -1,3 +1,7 @@
+================================================================================
+FILE: index.html
+================================================================================
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -475,47 +479,6 @@
                     </div>
                 </div>
 
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label for="umsatzsteuersatz">Umsatzsteuersatz</label>
-                        <select id="umsatzsteuersatz" onchange="toggleUstDisclaimer(this)">
-                            <option value="">-- Bitte auswählen --</option>
-                            <option value="0% – Steuerbefreit PV-Anlage (§ 12 Abs. 3 UStG)">0 % – Steuerbefreit PV-Anlage (§ 12 Abs. 3 UStG)</option>
-                            <option value="0%">0 % (Kleinunternehmer / steuerfrei)</option>
-                            <option value="7%">7 % (ermäßigt)</option>
-                            <option value="19%">19 % (Regelsteuersatz)</option>
-                        </select>
-                        <div id="ustDisclaimer" class="info-box" style="display:none; margin-top:10px;">
-                            <p>⚠️ <strong>Hinweis:</strong> Die Steuerbefreiung nach § 12 Abs. 3 UStG gilt ausschließlich für Komponenten der PV-Anlage (Module, Wechselrichter, Speicher, Montage). <strong>Wallboxen / Ladestationen sind keine Bestandteile der PV-Anlage</strong> und werden separat mit <strong>19 % Umsatzsteuer</strong> berechnet.</p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="steuernummer">Steuernummer</label>
-                        <input type="text" id="steuernummer" placeholder="z.B. 123/456/78901">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="iban">Bankverbindung (IBAN)</label>
-                    <input type="text" id="iban" placeholder="z.B. DE89 3704 0044 0532 0130 00" maxlength="34"
-                        oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9 ]/g,'')"
-                        onblur="validateIBAN(this)">
-                    <small id="ibanError" style="color:#cc0000;display:none;">Ungültige IBAN – bitte prüfen.</small>
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label for="zaehlernummer">Zählernummer</label>
-                        <input type="text" id="zaehlernummer" placeholder="z.B. 1ABC1234567890">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="zaehlerstand">Zählerstand</label>
-                        <input type="number" id="zaehlerstand" min="0" step="1" placeholder="z.B. 12450">
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <label for="strasse">Straße und Hausnummer</label>
                     <input type="text" id="strasse" placeholder="z.B. Hauptstraße 123">
@@ -574,15 +537,6 @@
                         <option data-kapazitaet="(Hybrid-System)" data-typ="Hybrid-Wechselrichter + Speicher">Sigen Hybrid 5.0 TP</option>
                     </select>
                     <div id="speicherInfo" class="zerez-id"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="systeme">Systeme</label>
-                    <select id="systeme">
-                        <option value="">-- Bitte auswählen --</option>
-                        <option>Sigenergy Sigen Energy Controller 12.0 kW dreiphasig</option>
-                        <option>Sigenergy Sigen Energy Controller 6.0 kW dreiphasig</option>
-                    </select>
                 </div>
 
                 <!-- kWp Rechner -->
@@ -644,29 +598,6 @@
                     </select>
                 </div>
 
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label for="waermepumpe">Wärmepumpe Hersteller Typ</label>
-                        <input type="text" id="waermepumpe" placeholder="z.B. Viessmann Vitocal 250-A">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ladestation">Ladestation Hersteller Typ</label>
-                        <input type="text" id="ladestation" placeholder="z.B. KEBA KeContact P30">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="messkonzept">Messkonzept</label>
-                    <select id="messkonzept">
-                        <option value="">-- Bitte auswählen --</option>
-                        <option value="Messkonzept 1 – Volleinspeisung">Messkonzept 1 – Volleinspeisung</option>
-                        <option value="Messkonzept 2 – Überschusseinspeisung mit Eigenverbrauch">Messkonzept 2 – Überschusseinspeisung mit Eigenverbrauch</option>
-                        <option value="Messkonzept 3 – Volleinspeisung + separater Eigenverbrauch">Messkonzept 3 – Volleinspeisung + separater Eigenverbrauch</option>
-                        <option value="Messkonzept 4 – Überschusseinspeisung mit Speicher">Messkonzept 4 – Überschusseinspeisung mit Speicher</option>
-                    </select>
-                </div>
-
                 <div class="form-group">
                     <label for="bemerkungen">Bemerkungen / Besonderheiten</label>
                     <textarea id="bemerkungen" rows="4" placeholder="Zusätzliche Informationen..."></textarea>
@@ -707,21 +638,6 @@
     <script>
         let formData = {};
         let uploadedPhotos = [];
-
-        function toggleUstDisclaimer(select) {
-            const disclaimer = document.getElementById('ustDisclaimer');
-            disclaimer.style.display = select.value.startsWith('0% – Steuerbefreit') ? 'block' : 'none';
-        }
-
-        function validateIBAN(input) {
-            const raw = input.value.replace(/\s/g, '');
-            const errorEl = document.getElementById('ibanError');
-            if (!raw) { errorEl.style.display = 'none'; return true; }
-            // Basic structural check: 2 letters + 2 digits + up to 30 alphanumeric
-            const isValid = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$/.test(raw);
-            errorEl.style.display = isValid ? 'none' : 'inline';
-            return isValid;
-        }
 
         async function showAppVersion() {
             const appVersionElement = document.getElementById('appVersion');
@@ -848,11 +764,6 @@
                     name: document.getElementById('kundenname').value,
                     email: document.getElementById('email').value,
                     telefon: document.getElementById('telefon').value,
-                    umsatzsteuersatz: document.getElementById('umsatzsteuersatz').value,
-                    steuernummer: document.getElementById('steuernummer').value,
-                    iban: document.getElementById('iban').value,
-                    zaehlernummer: document.getElementById('zaehlernummer').value,
-                    zaehlerstand: document.getElementById('zaehlerstand').value,
                     strasse: document.getElementById('strasse').value,
                     plz: document.getElementById('plz').value,
                     ort: document.getElementById('ort').value
@@ -862,8 +773,7 @@
                     zerezId: document.getElementById('wechselrichter').options[document.getElementById('wechselrichter').selectedIndex].getAttribute('data-zerez'),
                     speicher: document.getElementById('speicher').options[document.getElementById('speicher').selectedIndex].text,
                     speicherKapazitaet: document.getElementById('speicher').options[document.getElementById('speicher').selectedIndex].getAttribute('data-kapazitaet'),
-                    speicherTyp: document.getElementById('speicher').options[document.getElementById('speicher').selectedIndex].getAttribute('data-typ'),
-                    systeme: document.getElementById('systeme').value
+                    speicherTyp: document.getElementById('speicher').options[document.getElementById('speicher').selectedIndex].getAttribute('data-typ')
                 },
                 anlage: {
                     modulAnzahl: document.getElementById('modulAnzahl').value,
@@ -872,10 +782,7 @@
                     dachausrichtung: document.getElementById('dachausrichtung').value,
                     dachneigung: document.getElementById('dachneigung').value,
                     stromverbrauch: document.getElementById('stromverbrauch').value,
-                    wallbox: document.getElementById('wallbox').value,
-                    waermepumpe: document.getElementById('waermepumpe').value,
-                    ladestation: document.getElementById('ladestation').value,
-                    messkonzept: document.getElementById('messkonzept').value
+                    wallbox: document.getElementById('wallbox').value
                 },
                 bemerkungen: document.getElementById('bemerkungen').value,
                 datum: document.getElementById('datum').value,
@@ -894,21 +801,6 @@
             html += '<div class="summary-item"><span class="summary-label">Name:</span><span class="summary-value">' + formData.kunde.name + '</span></div>';
             html += '<div class="summary-item"><span class="summary-label">E-Mail:</span><span class="summary-value">' + formData.kunde.email + '</span></div>';
             html += '<div class="summary-item"><span class="summary-label">Telefon:</span><span class="summary-value">' + formData.kunde.telefon + '</span></div>';
-            if (formData.kunde.umsatzsteuersatz) {
-                html += '<div class="summary-item"><span class="summary-label">Umsatzsteuersatz:</span><span class="summary-value">' + formData.kunde.umsatzsteuersatz + '</span></div>';
-            }
-            if (formData.kunde.steuernummer) {
-                html += '<div class="summary-item"><span class="summary-label">Steuernummer:</span><span class="summary-value">' + formData.kunde.steuernummer + '</span></div>';
-            }
-            if (formData.kunde.iban) {
-                html += '<div class="summary-item"><span class="summary-label">IBAN:</span><span class="summary-value">' + formData.kunde.iban + '</span></div>';
-            }
-            if (formData.kunde.zaehlernummer) {
-                html += '<div class="summary-item"><span class="summary-label">Zählernummer:</span><span class="summary-value">' + formData.kunde.zaehlernummer + '</span></div>';
-            }
-            if (formData.kunde.zaehlerstand) {
-                html += '<div class="summary-item"><span class="summary-label">Zählerstand:</span><span class="summary-value">' + formData.kunde.zaehlerstand + ' kWh</span></div>';
-            }
             if (formData.kunde.strasse) {
                 html += '<div class="summary-item"><span class="summary-label">Straße:</span><span class="summary-value">' + formData.kunde.strasse + '</span></div>';
             }
@@ -937,9 +829,6 @@
                     html += '<div class="summary-item"><span class="summary-label">Typ:</span><span class="summary-value">' + formData.system.speicherTyp + '</span></div>';
                 }
             }
-            if (formData.system.systeme) {
-                html += '<div class="summary-item"><span class="summary-label">Systeme:</span><span class="summary-value">' + formData.system.systeme + '</span></div>';
-            }
             html += '</div>';
             
             html += '</div>';
@@ -966,15 +855,6 @@
                 html += '<div class="summary-item"><span class="summary-label">Jahresverbrauch:</span><span class="summary-value">' + formData.anlage.stromverbrauch + ' kWh</span></div>';
             }
             html += '<div class="summary-item"><span class="summary-label">Wallbox:</span><span class="summary-value">' + formData.anlage.wallbox + '</span></div>';
-            if (formData.anlage.waermepumpe) {
-                html += '<div class="summary-item"><span class="summary-label">Wärmepumpe:</span><span class="summary-value">' + formData.anlage.waermepumpe + '</span></div>';
-            }
-            if (formData.anlage.ladestation) {
-                html += '<div class="summary-item"><span class="summary-label">Ladestation:</span><span class="summary-value">' + formData.anlage.ladestation + '</span></div>';
-            }
-            if (formData.anlage.messkonzept) {
-                html += '<div class="summary-item"><span class="summary-label">Messkonzept:</span><span class="summary-value">' + formData.anlage.messkonzept + '</span></div>';
-            }
             html += '</div>';
             
             // Bemerkungen
@@ -1052,31 +932,6 @@
                 yPos += 7;
                 pdf.text('Telefon: ' + formData.kunde.telefon, 25, yPos);
                 yPos += 7;
-
-                if (formData.kunde.umsatzsteuersatz) {
-                    pdf.text('Umsatzsteuersatz: ' + formData.kunde.umsatzsteuersatz, 25, yPos);
-                    yPos += 7;
-                }
-
-                if (formData.kunde.steuernummer) {
-                    pdf.text('Steuernummer: ' + formData.kunde.steuernummer, 25, yPos);
-                    yPos += 7;
-                }
-
-                if (formData.kunde.iban) {
-                    pdf.text('IBAN: ' + formData.kunde.iban, 25, yPos);
-                    yPos += 7;
-                }
-
-                if (formData.kunde.zaehlernummer) {
-                    pdf.text('Zaehlernummer: ' + formData.kunde.zaehlernummer, 25, yPos);
-                    yPos += 7;
-                }
-
-                if (formData.kunde.zaehlerstand) {
-                    pdf.text('Zaehlerstand: ' + formData.kunde.zaehlerstand + ' kWh', 25, yPos);
-                    yPos += 7;
-                }
                 
                 if (formData.kunde.strasse) {
                     pdf.text('Strasse: ' + formData.kunde.strasse, 25, yPos);
@@ -1121,11 +976,6 @@
                         pdf.text('Typ: ' + formData.system.speicherTyp, 25, yPos);
                         yPos += 7;
                     }
-                }
-
-                if (formData.system.systeme) {
-                    pdf.text('Systeme: ' + formData.system.systeme, 25, yPos);
-                    yPos += 7;
                 }
                 
                 yPos += 10;
@@ -1172,21 +1022,6 @@
                 
                 pdf.text('Wallbox: ' + formData.anlage.wallbox, 25, yPos);
                 yPos += 7;
-
-                if (formData.anlage.waermepumpe) {
-                    pdf.text('Waermepumpe: ' + formData.anlage.waermepumpe, 25, yPos);
-                    yPos += 7;
-                }
-
-                if (formData.anlage.ladestation) {
-                    pdf.text('Ladestation: ' + formData.anlage.ladestation, 25, yPos);
-                    yPos += 7;
-                }
-
-                if (formData.anlage.messkonzept) {
-                    pdf.text('Messkonzept: ' + formData.anlage.messkonzept, 25, yPos);
-                    yPos += 7;
-                }
                 
                 // Bemerkungen
                 if (formData.bemerkungen) {
@@ -1266,11 +1101,6 @@
                     'Name: ' + formData.kunde.name + '\n' +
                     'E-Mail: ' + formData.kunde.email + '\n' +
                     'Telefon: ' + formData.kunde.telefon + 
-                    (formData.kunde.umsatzsteuersatz ? '\nUmsatzsteuersatz: ' + formData.kunde.umsatzsteuersatz : '') +
-                    (formData.kunde.steuernummer ? '\nSteuernummer: ' + formData.kunde.steuernummer : '') +
-                    (formData.kunde.iban ? '\nIBAN: ' + formData.kunde.iban : '') +
-                    (formData.kunde.zaehlernummer ? '\nZählernummer: ' + formData.kunde.zaehlernummer : '') +
-                    (formData.kunde.zaehlerstand ? '\nZählerstand: ' + formData.kunde.zaehlerstand + ' kWh' : '') +
                     (formData.kunde.strasse ? '\nStraße: ' + formData.kunde.strasse : '') +
                     (formData.kunde.plz || formData.kunde.ort ? '\nPLZ / Ort: ' + (formData.kunde.plz || '') + (formData.kunde.plz && formData.kunde.ort ? ' ' : '') + (formData.kunde.ort || '') : '') + '\n\n' +
                     'System:\n' +
@@ -1278,8 +1108,7 @@
                     (formData.system.zerezId ? '\nWR Zerez ID: ' + formData.system.zerezId : '') +
                     (formData.system.speicher && formData.system.speicher !== '-- Keinen Speicher --' ? '\nSpeichersystem: ' + formData.system.speicher : '') +
                     (formData.system.speicherKapazitaet ? '\nKapazität: ' + formData.system.speicherKapazitaet : '') +
-                    (formData.system.speicherTyp ? '\nTyp: ' + formData.system.speicherTyp : '') +
-                    (formData.system.systeme ? '\nSysteme: ' + formData.system.systeme : '') + '\n\n' +
+                    (formData.system.speicherTyp ? '\nTyp: ' + formData.system.speicherTyp : '') + '\n\n' +
                     'Anlage:\n' +
                     'Gesamtleistung: ' + formData.anlage.kwp + ' kWp\n' +
                     'Module: ' + formData.anlage.modulAnzahl + ' × ' + formData.anlage.modulLeistung + ' Wp' +
@@ -1287,9 +1116,6 @@
                     (formData.anlage.dachneigung ? '\nDachneigung: ' + formData.anlage.dachneigung + '°' : '') +
                     (formData.anlage.stromverbrauch ? '\nJahresverbrauch: ' + formData.anlage.stromverbrauch + ' kWh' : '') +
                     '\nWallbox: ' + formData.anlage.wallbox +
-                    (formData.anlage.waermepumpe ? '\nWärmepumpe: ' + formData.anlage.waermepumpe : '') +
-                    (formData.anlage.ladestation ? '\nLadestation: ' + formData.anlage.ladestation : '') +
-                    (formData.anlage.messkonzept ? '\nMesskonzept: ' + formData.anlage.messkonzept : '') +
                     (formData.bemerkungen ? '\n\nBemerkungen:\n' + formData.bemerkungen : '') +
                     (formData.fotos && formData.fotos.length > 0 ? '\n\nFotos: ' + formData.fotos.length + ' Foto(s) im PDF enthalten' : '') +
                     '\n\nDatum: ' + formData.datum +
@@ -1317,3 +1143,490 @@
     </script>
 </body>
 </html>
+
+
+================================================================================
+FILE: manifest.json
+================================================================================
+
+{
+  "name": "PV Daten für Elektriker Partner",
+  "short_name": "PV Elektriker",
+  "version": "1.1.0",
+  "build": "2026-04-30",
+  "description": "PV-Datenerfassung für Elektriker Partner - Hoffmann Metallbau",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0066cc",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+
+
+================================================================================
+FILE: service-worker.js
+================================================================================
+
+const CACHE_NAME = 'pv-elektriker-v2';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/logo.svg',
+  '/logo.png',
+  'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'
+];
+
+// Install Service Worker
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('Cache geöffnet');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+// Fetch from Cache
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // Cache hit - return response
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      }
+    )
+  );
+});
+
+// Update Service Worker
+self.addEventListener('activate', event => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
+
+
+================================================================================
+FILE: vercel.json
+================================================================================
+
+{
+  "headers": [
+    {
+      "source": "/service-worker.js",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        }
+      ]
+    }
+  ]
+}
+
+
+================================================================================
+FILE: logo-test.html
+================================================================================
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Logo Test</title>
+    <style>
+        body {
+            padding: 50px;
+            background: #f0f0f0;
+        }
+        .test-box {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid #ccc;
+        }
+        img {
+            border: 2px solid red;
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Logo Test - Welches Logo wird angezeigt?</h1>
+    
+    <div class="test-box">
+        <h2>1. Original PNG (logo-original.png)</h2>
+        <img src="logo-original.png" width="200" alt="Original">
+    </div>
+    
+    <div class="test-box">
+        <h2>2. Logo PNG 512x512 (logo.png)</h2>
+        <img src="logo.png" width="200" alt="Logo PNG">
+    </div>
+    
+    <div class="test-box">
+        <h2>3. Logo Header (logo-header.png)</h2>
+        <img src="logo-header.png" width="200" alt="Logo Header">
+    </div>
+    
+    <div class="test-box">
+        <h2>4. Logo SVG (logo.svg)</h2>
+        <img src="logo.svg" width="200" alt="Logo SVG">
+    </div>
+    
+    <div class="test-box">
+        <h2>5. Logo 192 (logo-192.png)</h2>
+        <img src="logo-192.png" width="192" alt="Logo 192">
+    </div>
+</body>
+</html>
+
+
+================================================================================
+FILE: README.md
+================================================================================
+
+# PV Daten für Elektriker Partner
+
+Eine Progressive Web App (PWA) zur Erfassung von PV-Anlagen-Daten für Elektriker Partner von Hoffmann Metallbau GmbH & CO. KG.
+
+## 🌟 Features
+
+- ✅ **Responsive Design** - Funktioniert auf allen Geräten
+- ✅ **Offline-fähig** - Als PWA auf dem Smartphone installierbar
+- ✅ **Automatische kWp-Berechnung** - Modulanzahl × Leistung
+- ✅ **Zerez ID Integration** - Automatische Anzeige für Wechselrichter
+- ✅ **PDF-Export** - Professionelle PDF-Erstellung mit jsPDF
+- ✅ **E-Mail-Integration** - Direkter Versand an info@hofmet.de
+- ✅ **Moderne UI** - Im Corporate Design von Hoffmann Metallbau
+
+## 📱 Installation als App
+
+### Auf iPhone/iPad:
+1. Öffne die App in **Safari**
+2. Tippe auf das **Teilen-Symbol** 📤
+3. Wähle **"Zum Home-Bildschirm"**
+4. Tippe auf **"Hinzufügen"**
+
+### Auf Android:
+1. Öffne die App in **Chrome**
+2. Tippe auf die **drei Punkte** ⋮
+3. Wähle **"App installieren"** oder **"Zum Startbildschirm hinzufügen"**
+4. Tippe auf **"Installieren"**
+
+## 🚀 Deployment
+
+### GitHub Pages
+1. Repository auf GitHub erstellen
+2. Alle Dateien hochladen
+3. In Repository Settings → Pages:
+   - Source: `main` Branch
+   - Folder: `/ (root)`
+4. Nach wenigen Minuten ist die App live unter:
+   `https://username.github.io/repository-name/`
+
+### Vercel
+1. Repository auf GitHub pushen
+2. Vercel Account erstellen (vercel.com)
+3. "New Project" → GitHub Repository verbinden
+4. Deploy - fertig!
+
+## 📁 Projektstruktur
+
+```
+.
+├── index.html              # Haupt-HTML-Datei mit App
+├── manifest.json           # PWA Manifest
+├── service-worker.js       # Service Worker für Offline-Funktionalität
+├── logo.svg                # Logo im SVG-Format
+├── logo.png                # Logo als PNG (512x512)
+└── README.md               # Diese Datei
+```
+
+## 🛠️ Technologien
+
+- **HTML5** - Struktur
+- **CSS3** - Styling (Corporate Design)
+- **Vanilla JavaScript** - Funktionalität
+- **jsPDF** - PDF-Generierung
+- **PWA** - Progressive Web App Features
+- **Service Worker** - Offline-Funktionalität
+
+## 📋 Verwendete Komponenten
+
+### Wechselrichter
+- **FENECON**: home 6 V2, home 10 V2, home 15, home 20
+- **SIGEN**: Hybrid 5.0 TP, Hybrid 8.0 TP, Hybrid 10.0 TP, Stor EC 15.0 TP
+
+### Speichersysteme
+- **FENECON**: Home 10 Gen2, Home 10 kW, Home 20 kW, Home 15
+- **SIGEN**: SigenStor BAT 10.0, BAT 8.0, 16 kWh, 6 kWh, Stack Battery, Battery 9 kWh, EC 25.0 TP, Hybrid 5.0 TP
+
+## 🎨 Design
+
+Das Design orientiert sich am Corporate Design von Hoffmann Metallbau:
+- **Primärfarbe**: Orange (#ff9500)
+- **Sekundärfarbe**: Dunkelgrau (#1a1a1a)
+- **Akzentfarbe**: Orange-Rot (#ff6600)
+
+## 📧 Kontakt
+
+**Hoffmann Metallbau GmbH & CO. KG**
+- E-Mail: info@hofmet.de
+- Website: www.hofmet.de
+- Standort: Meerbusch
+
+## 📄 Lizenz
+
+© 2024 Hoffmann Metallbau GmbH & CO. KG. Alle Rechte vorbehalten.
+
+---
+
+Entwickelt für Elektriker Partner zur einfachen Erfassung von PV-Anlagen-Daten.
+
+
+================================================================================
+FILE: DEPLOYMENT.md
+================================================================================
+
+# 🚀 Deployment Anleitung
+
+Schritt-für-Schritt Anleitung zum Deployment der PV Elektriker App.
+
+---
+
+## Option 1: GitHub Pages (Kostenlos & Einfach)
+
+### Schritt 1: GitHub Repository erstellen
+1. Gehe zu [github.com](https://github.com) und melde dich an
+2. Klicke auf **"New repository"** (grüner Button)
+3. Repository Name: `pv-elektriker-app` (oder ein anderer Name)
+4. Beschreibung: `PV Daten App für Elektriker Partner`
+5. **Public** auswählen (für GitHub Pages kostenlos)
+6. ✅ "Add a README file" **NICHT** anklicken (wir haben schon eins)
+7. Klicke auf **"Create repository"**
+
+### Schritt 2: Dateien hochladen
+**Option A: Via Web-Interface (Einfach)**
+1. Auf der Repository-Seite: Klicke **"uploading an existing file"**
+2. Ziehe alle Dateien in das Fenster:
+   - `index.html`
+   - `manifest.json`
+   - `service-worker.js`
+   - `logo.svg`
+   - `logo.png`
+   - `vercel.json`
+   - `README.md`
+   - `.gitignore`
+3. Commit message: `Initial commit - PV Elektriker App`
+4. Klicke **"Commit changes"**
+
+**Option B: Via Git Command Line (Fortgeschritten)**
+```bash
+# In dem Ordner mit den Dateien:
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/DEIN-USERNAME/pv-elektriker-app.git
+git push -u origin main
+```
+
+### Schritt 3: GitHub Pages aktivieren
+1. Gehe zu deinem Repository
+2. Klicke auf **"Settings"** (Zahnrad-Symbol)
+3. Scrolle in der linken Sidebar zu **"Pages"**
+4. Unter "Source":
+   - Branch: **`main`**
+   - Folder: **`/ (root)`**
+5. Klicke **"Save"**
+6. ⏳ Warte 2-3 Minuten
+
+### Schritt 4: App aufrufen
+Deine App ist jetzt live unter:
+```
+https://DEIN-USERNAME.github.io/pv-elektriker-app/
+```
+
+🎉 **Fertig!** Die App ist nun online.
+
+---
+
+## Option 2: Vercel (Schneller & Professioneller)
+
+### Schritt 1: Vercel Account erstellen
+1. Gehe zu [vercel.com](https://vercel.com)
+2. Klicke **"Sign Up"**
+3. Wähle **"Continue with GitHub"**
+4. Autorisiere Vercel
+
+### Schritt 2: Repository verbinden
+1. Klicke **"New Project"**
+2. Klicke **"Import Git Repository"**
+3. Wähle dein `pv-elektriker-app` Repository
+4. Klicke **"Import"**
+
+### Schritt 3: Deploy Settings
+- **Framework Preset**: Other
+- **Root Directory**: `./`
+- Klicke **"Deploy"**
+
+### Schritt 4: Warten
+⏳ Deployment dauert ca. 30 Sekunden
+
+### Schritt 5: Fertig!
+Deine App ist live unter:
+```
+https://pv-elektriker-app.vercel.app
+```
+
+### Bonus: Custom Domain
+1. Gehe zu Project Settings → Domains
+2. Füge deine Domain hinzu (z.B. `pv.hofmet.de`)
+3. Folge den DNS-Anweisungen
+
+---
+
+## 📱 Als App auf Smartphone installieren
+
+### iPhone/iPad (Safari):
+```
+1. Öffne die URL in Safari
+2. Tippe auf Teilen-Symbol 📤 (unten)
+3. Scrolle runter → "Zum Home-Bildschirm"
+4. Tippe "Hinzufügen"
+```
+
+### Android (Chrome):
+```
+1. Öffne die URL in Chrome
+2. Tippe auf Menü ⋮ (oben rechts)
+3. Wähle "App installieren"
+4. Tippe "Installieren"
+```
+
+---
+
+## 🔄 Updates deployen
+
+### Bei GitHub Pages:
+1. Bearbeite die Dateien lokal
+2. Lade die geänderten Dateien hoch (oder git push)
+3. GitHub Pages aktualisiert automatisch (1-2 Minuten)
+
+### Bei Vercel:
+1. Push zu GitHub: `git push`
+2. Vercel deployed automatisch (30 Sekunden)
+3. Fertig!
+
+---
+
+## ⚙️ Troubleshooting
+
+### Problem: "404 Page Not Found"
+**Lösung:** 
+- Prüfe ob `index.html` im Root-Verzeichnis liegt
+- Bei GitHub Pages: Prüfe Settings → Pages → Branch ist `main`
+
+### Problem: "Service Worker funktioniert nicht"
+**Lösung:**
+- HTTPS erforderlich (GitHub Pages/Vercel haben das automatisch)
+- Browser-Cache leeren
+- Prüfe Browser Console (F12) für Fehler
+
+### Problem: "App installiert sich nicht"
+**Lösung:**
+- Muss über HTTPS sein
+- `manifest.json` muss korrekt verlinkt sein
+- Icons müssen erreichbar sein
+- Safari nur für iOS, Chrome für Android
+
+### Problem: "PDF wird nicht erstellt"
+**Lösung:**
+- Prüfe ob jsPDF CDN erreichbar ist
+- Browser Console checken (F12)
+- Popup-Blocker deaktivieren
+
+---
+
+## 📞 Support
+
+Bei Fragen oder Problemen:
+- **E-Mail**: info@hofmet.de
+- **GitHub Issues**: Im Repository "Issues" öffnen
+
+---
+
+## ✅ Checkliste vor dem Deployment
+
+- [ ] Alle 8 Dateien vorhanden
+- [ ] `index.html` funktioniert lokal
+- [ ] E-Mail-Adresse korrekt (info@hofmet.de)
+- [ ] Logo-Dateien vorhanden
+- [ ] README.md angepasst (optional)
+- [ ] GitHub Repository erstellt
+- [ ] Files hochgeladen
+- [ ] GitHub Pages aktiviert
+- [ ] URL funktioniert
+- [ ] Als App installierbar
+
+---
+
+**Viel Erfolg beim Deployment! 🚀**
+
+
+================================================================================
+FILE: .gitattributes
+================================================================================
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+
